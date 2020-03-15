@@ -15,3 +15,4 @@ async function SendMail() {
 }
 
 document.getElementById('Send').addEventListener('click', SendMail);
+//и в чем проблема?
