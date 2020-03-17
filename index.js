@@ -1,6 +1,8 @@
 function AddMessage() {
-    let targetMail = document.getElementById('Email').innerText;
-    let targetMessage = document.getElementById('Text').innerText;
+    let targetMail = document.getElementById('Email').value;
+    let targetMessage = document.getElementById('Text').value;
+
+
 
     let message = document.createElement('div');
     message.innerHTML = `
@@ -8,7 +10,7 @@ function AddMessage() {
                         <p>${targetMessage}</p>`
 
     document.getElementById('MessageField').append(message);
-    document.getElementById('Text').innerText = '';
+    document.getElementById('Text').value = '';
 }
 
 document.getElementById('Send').addEventListener('click', AddMessage);

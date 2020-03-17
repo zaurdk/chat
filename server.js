@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 const nodemailer = require('nodemailer');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
-    
+
 let testEmailAccount = nodemailer.createTestAccount();
 
 let transporter = nodemailer.createTransport({
@@ -18,20 +18,19 @@ let transporter = nodemailer.createTransport({
 });
 
 
-app.post("/sendmail", urlencodedParser, function (request, response) {
+app.post("/", urlencodedParser, function (request, response) {
   if(!request.body) return response.sendStatus(400);
   console.log(request.body);
 
-    // let result = transporter.SendMail({
-    //     from: '"Node js" <nodejs@example.com>',
-    //     to: `${request.body.mail}, ${request.body.mail}`,
-    //     subject: "Message from new messenger",
-    //     text: `${request.body.text}`,
-    //     html: `${request.body.text}`,
-    //     attachments: []
-    // });
-
-    response.send(request.body);
+    let result = transporter.sendMail({
+        from: '"Node js" <nodejs@example.com>',
+        to: `${request.body.mail}, ${request.body.mail}`,
+        subject: "Message from new messenger",
+        text: `${request.body.text}`,
+        html: `${request.body.text}`,
+        attachments: []
+    });
+    console.log(response);
 
 });
 
