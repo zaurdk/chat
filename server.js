@@ -1,13 +1,38 @@
 var express = require('express');
 var app = express();
+const bodyParser = require("body-parser");
 
+const nodemailer = require('nodemailer');
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+    
+let testEmailAccount = nodemailer.createTestAccount();
 
-app.use(function(req,res,next){
-  if (req.url.endsWith('.json')) {
-    setTimeout(next, 200);
-  } else {
-    next();
+let transporter = nodemailer.createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  secure: false,
+  auth: {
+    user: testEmailAccount.user,
+    pass: testEmailAccount.pass
   }
+});
+
+
+app.post("/sendmail", urlencodedParser, function (request, response) {
+  if(!request.body) return response.sendStatus(400);
+  console.log(request.body);
+
+    // let result = transporter.SendMail({
+    //     from: '"Node js" <nodejs@example.com>',
+    //     to: `${request.body.mail}, ${request.body.mail}`,
+    //     subject: "Message from new messenger",
+    //     text: `${request.body.text}`,
+    //     html: `${request.body.text}`,
+    //     attachments: []
+    // });
+
+    response.send(request.body);
+
 });
 
 app.use(express.static(__dirname + '/', {
@@ -23,3 +48,6 @@ var server = app.listen(3000, function () {
 
   console.log('Your server is running at http://localhost:%s', port);
 });
+
+
+//https://metanit.com/web/nodejs/4.5.php

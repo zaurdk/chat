@@ -11,5 +11,3 @@ let transporter = nodemailer.createTransport({
     pass: testEmailAccount.pass
   }
 });
-
-export { transporter };

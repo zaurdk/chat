@@ -1,18 +1,14 @@
-import { transporter } from "./nodemailer.js"
+function AddMessage() {
+    let targetMail = document.getElementById('Email').innerText;
+    let targetMessage = document.getElementById('Text').innerText;
 
-async function SendMail() {
-    let eMail = document.getElementById('Email').nodeValue;
-    let text = document.getElementById('Text').nodeValue;
+    let message = document.createElement('div');
+    message.innerHTML = `
+                        <p>${targetMail}</p><br>
+                        <p>${targetMessage}</p>`
 
-    await transporter.SendMail({
-        from: '"Node js" <nodejs@example.com>',
-        to: `${eMail}, ${eMail}`,
-        subject: "Message from new messenger",
-        text: `${text}`,
-        html: `${text}`,
-        attachments: []
-    })
+    document.getElementById('MessageField').append(message);
+    document.getElementById('Text').innerText = '';
 }
 
-document.getElementById('Send').addEventListener('click', SendMail);
-//и в чем проблема?
+document.getElementById('Send').addEventListener('click', AddMessage);
