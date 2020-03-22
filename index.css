@@ -13,14 +13,26 @@ div {
 }
 
 div#MessageField {
+    overflow: auto;
     width: 1000px;
     height: 700px;
 }
 
 div#MailString{
+    vertical-align: bottom;
     width: 1000px;
     height: 50px;
+}
 
+div.Message {
+    margin-right: 5px; 
+}
+
+#MailString {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input {

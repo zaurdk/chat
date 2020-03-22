@@ -1,3 +1,5 @@
+var counter = 0;
+
 function AddMessage() {
     let targetMail = document.getElementById('Email').value;
     let targetMessage = document.getElementById('Text').value;
@@ -5,12 +7,16 @@ function AddMessage() {
 
 
     let message = document.createElement('div');
+    message.classList.add('Message');
+    message.setAttribute('id', `${counter}`);
     message.innerHTML = `
                         <p>${targetMail}</p><br>
                         <p>${targetMessage}</p>`
 
     document.getElementById('MessageField').append(message);
     document.getElementById('Text').value = '';
+
+    counter++;
 }
 
-document.getElementById('Send').addEventListener('click', AddMessage);
+document.getElementById('Send').addEventListener('click', ()=>{setTimeout(AddMessage, 1000)});
