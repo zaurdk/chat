@@ -17,6 +17,7 @@ function AddMessage() {
     document.getElementById('Text').value = '';
 
     counter++;
+    window.stop();
 }
 
 document.getElementById('Send').addEventListener('click', ()=>{setTimeout(AddMessage, 1000)});

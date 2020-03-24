@@ -5,38 +5,42 @@ const bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
-let transporter;
+// let transporter;
 
-nodemailer.createTestAccount().then((account) => {
-  transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
-      secure: false,
-      auth: {
-          user: account.user,
-          pass: account.pass,
-      }
+// nodemailer.createTestAccount().then((account) => {
+//   transporter = nodemailer.createTransport({
+//       host: 'smtp.ethereal.email',
+//       port: 587,
+//       secure: false,
+//       auth: {
+//           user: account.user,
+//           pass: account.pass,
+//       }
+//   });
+// });
+
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'zaurdk@gmail.com',
+      pass: '1596335741'
+    }
   });
-});
 
 
 app.post("/", urlencodedParser, function (request, response) {
   if(!request.body) return response.sendStatus(400);
   console.log(request.body);
-  
-
 
     let result = transporter.sendMail({
-        from: '"MyTest" <testmail.forme@rambler.ru>',
+        from: '"MyTest" <zaurdk@gmail.com>',
         to: `${request.body.mail}, ${request.body.mail}`,
         subject: "Message from new messenger",
         text: `${request.body.text}`,
         html: `${request.body.text}`,
         attachments: []
     });
-
-    console.log(result);
-
+    
 });
 
 app.use(express.static(__dirname + '/', {
