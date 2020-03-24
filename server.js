@@ -22,8 +22,8 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 let transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-      user: 'zaurdk@gmail.com',
-      pass: '1596335741'
+      user: 'yourmail@gmail.com',
+      pass: 'yourpassword'
     }
   });
 
